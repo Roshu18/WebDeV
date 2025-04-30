@@ -1,0 +1,51 @@
+6. Write a C program toimplementanddemonstratea binary search on a
+ sorted array.
+ #include <stdio.h>
+ #include <conio.h>
+ void printarray (int *a,int n)
+ {
+ int i;
+ for (i=0;i<n;i++)
+ {
+ printf("%4d",a[i]);
+ }}
+ int binarysearch(int a[],int low,int high,int data)
+ {
+ int mid;
+while (low<=high)
+ {
+ mid=(low+high)/2;
+ if(a[mid]==data)
+ {
+ return mid;
+ }
+ if(a[mid]<data)
+ {
+ low=mid+1;
+ }
+ else
+ {
+ high=mid-1;
+ }}
+ return-1;
+ }
+ void main()
+ {
+ int a[] ={2,5,8,12,16,23,38,56,72,91,100};
+ //int a[]={2};
+ int n,data,result;
+ n =sizeof(a)/sizeof(a[0]);
+ clrscr();
+ printarray(a,n);
+ printf(" \n The size of array is %d", n);
+ printf("\n Enter the data to search: ");
+ scanf("%d",&data);
+ result = binarysearch (a,0,n-1,data);
+ if (result==-1)
+ {
+ printf("\n\n Element is not present in array"); }
+ else
+ {
+ printf("\n\n Element is present at index %d",result); }
+ getch();
+ }

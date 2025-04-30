@@ -1,0 +1,34 @@
+18 Write a Cprogramto demonstrate basic file operations : open, read, write
+ and close.
+ #include <stdio.h>
+ #include <stdlib.h>
+ int main() {
+ FILE *file;
+ char filename[] = "example.txt";
+ char buffer[100];
+ // Writing to a file
+ file = fopen(filename, "w"); // Open file for writing ("w" mode)
+ if (file == NULL) {
+ perror("Error opening file for writing");
+ return 1;
+ }
+ fprintf(file, "This is an example of file operations in C.\n");
+ fprintf(file, "We are demonstrating open, write, read, and close operations.\n");
+ printf("Data written to file successfully.\n");
+ // Close the file after writing
+ fclose(file);
+ // Reading from a file
+ file = fopen(filename, "r"); // Open file for reading ("r" mode)
+ if (file == NULL) {
+perror("Error opening file for reading");
+ return 1;
+ }
+ printf("\nReading data from file:\n");
+ // Read the file line by line and print it
+ while (fgets(buffer, sizeof(buffer), file)) {
+ printf("%s", buffer);
+ }
+ // Close the file after reading
+ fclose(file);
+ return 0;
+ }

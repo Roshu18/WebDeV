@@ -1,0 +1,43 @@
+.Write a C program to implement and demonstrate the Insertion sort
+ algorithm.
+ #include <stdio.h>
+ #include <conio.h>
+void insertionsort(int a[],int n)
+ {
+ int i,j,k,key;
+ for(i=1;i<n;i++)
+ {
+ key=a[i];
+ j=i-1;
+ //Move elements greater then key to one position ahead of their current pos
+ while(j>=0 &&a[j]>key)
+ {
+ a[j+1]=a[j];
+ j=j-1;
+ }
+ a[j+1]=key;
+ printf("\nLoop %d:",i);
+ for(k=0;k<n;k++)
+ {
+ printf(" %4d",a[k]);}
+ }}
+ void printarray(int a[],int n)
+ {
+ int i;
+ for(i=0;i<n;i++)
+ {
+ printf("%4d",a[i]);
+ }}
+ void main()
+ {
+ int a[]={12,71,13,5,6};
+ int n;
+ clrscr();
+ n=sizeof(a)/sizeof(a[0]);
+ printf("Array before sorting ");
+ printarray(a,n);
+ insertionsort(a,n);
+ printf("\n Array after sorting");
+ printarray(a,n);
+ getch();
+ }

@@ -1,0 +1,23 @@
+1. Write a C programto demonstrate basic data structure operations such as
+ creating and displaying elements in an array
+ 
+
+#include <stdio.h>
+ #include <conio.h>
+ void main()
+ {
+ int a[20],i,num;
+ clrscr();
+ printf("\n Enter the number of elements in array");
+ scanf("%d",&num);
+ printf("\n Enter the array elements");
+ for(i=0;i<num;i++)
+ {
+ scanf("%d",&a[i]);
+ }
+ for(i=0;i<num;i++)
+ {
+ printf("\n Array elements are a[%d]= %d",i,a[i]);
+ }
+ getch();
+ }

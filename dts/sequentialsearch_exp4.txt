@@ -1,0 +1,41 @@
+4. Write a C programto implementand demonstrate a sequential searchon
+ an array
+ #include <stdio.h>
+ #include <conio.h>
+ void printarray(int *a,int n)
+ {
+ int i;
+ for(i=0;i<n;i++)
+ {
+ printf("\n The elements in array are a[%d] = %d",i,a[i]);
+ }}
+ void main()
+ {
+ int a[10],i,n,data,match;
+ clrscr();
+ printf("Enter the number of elements in array");
+ scanf("%d",&n);
+ printf("Enter the %d elements : ",n);
+ for(i=0;i<n;i++)
+ {
+ scanf("%d",&a[i]);
+ }
+ printf ("\n unsorted array");
+ printarray (a,n);
+ //***********Linear Search*********/
+ printf("\n enter the data to search");
+ scanf("%d",&data);
+ match =0;
+ for (i=0;i<=n;i++)
+ {
+ if (a[i]==data)
+ {
+ printf("\n Data is found in %d location ",i);
+match =1;
+ }}
+ if (match==0)
+ {
+ printf(" Data not found");
+ }
+ getch();
+ }

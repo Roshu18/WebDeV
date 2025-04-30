@@ -1,0 +1,49 @@
+9. Write a C programto implementand demonstrate the Quick sort
+ algorithm.
+ #include <stdio.h>
+#include <conio.h>
+ int partition(int arr[],int st,int end)
+ {
+ int temp,idx=st-1,pivot=arr[end];
+ for(int j=st;j<end;j++)
+ {
+ if(arr[j]<=pivot)
+ {
+ idx++;
+ temp =arr[j];
+ arr[j]=arr[idx];
+ arr[idx]=temp;
+ }
+ }
+ idx++;
+ temp=arr[idx];
+ arr[idx]=arr[end];
+ arr[end]=temp;
+ return idx;
+ }
+ void quicksort(int arr[],int st,int end)
+ {
+ int size;
+ if(st<end)
+ {
+ int pivIdx =partition (arr,st,end);
+ quicksort(arr,st,pivIdx-1);//left half
+ quicksort(arr,pivIdx+1,end);//right half
+ }}
+ void main()
+ {
+ int arr[]={12,98,15,32,2,17};
+ int size=sizeof(arr)/sizeof(arr[0]);
+ clrscr();
+ printf("Actual array elements\n");
+ for (int i=0;i<size;i++)
+ {
+ printf("%4d",arr[i]);
+ }
+ quicksort(arr,0,size-1);
+ printf ("\n Array elements after sorting");
+ for(i=0;i<size;i++)
+ {
+printf(" %4d",arr[i]); }
+ getch();
+ }

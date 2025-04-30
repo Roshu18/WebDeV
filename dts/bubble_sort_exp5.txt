@@ -1,0 +1,39 @@
+5. Write a C programto implementand demonstrate bubble sort algorithm
+ #include <stdio.h>
+ #include <conio.h>
+ void printarray(int *a,int n)
+ {
+ int i;
+ for(i=0;i<n;i++)
+ {
+ printf("\n elements in array are a[%d]= %d ",i,a[i]);
+ }
+ }
+ void main()
+ {
+ int i,j,a[]={12,1,15,2,0};
+ int temp,n;
+ clrscr();
+ // size of one element is 4 bytes , size of a[] = 16 bytes
+ n=sizeof(a)/sizeof(a[0]);
+ printf ("size of array is : %d",n);
+ printf ("\n unsorted array");
+ printarray(a,n);
+ /******** Ascending order sorting using bubble sort********/ for (j=0;j<n
+1;j++)
+ {
+ for (i=0;i<n-1-j;i++)
+ {
+ if (a[i]>a[i+1])
+ {
+ temp=a[i];
+ a[i]=a[i+1];
+ a[i+1]=temp;
+ }}
+ printf ("\n pass %d",j);
+ printarray(a,n);
+ }
+ //printf("\n Sorted array in Ascending order");
+//printarray(a,n);
+ getch();
+ }
