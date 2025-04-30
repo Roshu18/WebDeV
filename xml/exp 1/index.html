@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XML Book Collection</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+  <h1>Book Collection</h1>
+  <table id="bookTable">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Genre</th>
+        <th>Year</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    function loadXMLDoc(filename, callback) {
+      var xhttp = new XMLHttpRequest();
+      xhttp.open("GET", filename, true);  // Change to 'true' for async
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          callback(this.responseXML);
+        }
+      };
+      xhttp.send();
+    }
+
+    function displayBooks(xmlDoc) {
+      var books = xmlDoc.getElementsByTagName("book");
+      var tableBody =<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XML Book Collection</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+  <h1>Book Collection</h1>
+  <table id="bookTable">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Genre</th>
+        <th>Year</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    // Use the fetch API to load XML asynchronously
+    function loadXMLDoc(filename) {
+      return fetch(filename)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Failed to load XML file');
+          }
+          return response.text();
+        })
+        .then(str => new window.DOMParser().parseFromString(str, "text/xml"))
+        .catch(err => console.error(err));
+    }
+
+    function displayBooks(xmlDoc) {
+      var books = xmlDoc.getElementsByTagName("book");
+      var tableBody = document.getElementById("bookTable").getElementsByTagName("tbody")[0];
+
+      for (var i = 0; i < books.length; i++) {
+        var book = books[i];
+        var title = book.getElementsByTagName("title")[0].textContent;
+        var author = book.getElementsByTagName("author")[0].textContent;
+        var genre = book.getElementsByTagName("genre")[0].textContent;
+        var year = book.getElementsByTagName("year")[0].textContent;
+
+        var row = tableBody.insertRow();
+        row.insertCell(0).innerHTML = title;
+        row.insertCell(1).innerHTML = author;
+        row.insertCell(2).innerHTML = genre;
+        row.insertCell(3).innerHTML = year;
+      }
+    }
+
+    window.onload = function() {
+      loadXMLDoc("books.xml")
+        .then(displayBooks);
+    };
+  </script>
+</body>
+</html>

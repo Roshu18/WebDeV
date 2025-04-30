@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Player Details</title>
+  <script>
+    function getPlayerDetails() {
+      let playerName = document.getElementById("playerSelect").value;
+      let xhr = new XMLHttpRequest();
+      xhr.open("GET", "exp5.xml", true);  // Request to fetch the XML file
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+          let xmlDoc = xhr.responseXML;
+          let players = xmlDoc.getElementsByTagName("player");
+          let output = "Player not found";  // Default message
+
+          // Loop through all players and check if the selected player exists
+          for (let i = 0; i < players.length; i++) {
+            let name = players[i].getElementsByTagName("name")[0].textContent;
+            if (name === playerName) {
+              let country = players[i].getElementsByTagName("country")[0].textContent;
+              let wickets = players[i].getElementsByTagName("wickets")[0].textContent;
+              let runs = players[i].getElementsByTagName("runs")[0].textContent;
+              output = `<strong>Name:</strong> ${name} <br>
+                        <strong>Country:</strong> ${country} <br>
+                        <strong>Wickets:</strong> ${wickets} <br>
+                        <strong>Runs:</strong> ${runs}`;
+              break;
+            }
+          }
+          // Display the output in the playerDetails div
+          document.getElementById("playerDetails").innerHTML = output;
+        }
+      };
+      xhr.send();  // Send the request
+    }
+  </script>
+</head>
+<body>
+  <h2>Select a Player</h2>
+  <select id="playerSelect" onchange="getPlayerDetails()">
+    <option value="">--Select a Player--</option>
+    <option value="Virat Kohli">Virat Kohli</option>
+    <option value="Joe Root">Joe Root</option>
+    <option value="Steve Smith">Steve Smith</option>
+    <option value="Babar Azam">Babar Azam</option>
+  </select>
+
+  <h3>Player Details:</h3>
+  <div id="playerDetails">Select a player to view details.</div>
+</body>
+</html>

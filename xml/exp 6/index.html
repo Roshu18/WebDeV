@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AJAX Error Handling</title>
+  <!-- Correct jQuery script link -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <button id="fetchData">Fetch Data</button>
+  <p id="message"></p>
+
+  <script>
+    $(document).ready(function () {
+      $("#fetchData").click(function () {
+        $.ajax({
+          url: "non_existing_url.php", // This URL does not exist
+          type: "GET",
+          success: function (response) {
+            $("#message").text("Data fetched successfully!");
+          },
+          error: function (xhr, status, error) {
+            // Displaying user-friendly error message
+            $("#message").text("Error: Unable to fetch data. Please try again later.");
+            // Logging error details to the console for debugging
+            console.log("AJAX Error:", status, error);
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

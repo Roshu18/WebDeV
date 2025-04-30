@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<players>
+  <player>
+    <name>Virat Kohli</name>
+    <country>India</country>
+    <wickets>4</wickets>
+    <runs>12000</runs>
+  </player>
+  <player>
+    <name>Joe Root</name>
+    <country>England</country>
+    <wickets>20</wickets>
+    <runs>10500</runs>
+  </player>
+  <player>
+    <name>Steve Smith</name>
+    <country>Australia</country>
+    <wickets>10</wickets>
+    <runs>9500</runs>
+  </player>
+  <player>
+    <name>Babar Azam</name>
+    <country>Pakistan</country>
+    <wickets>2</wickets>
+    <runs>8000</runs>
+  </player>
+</players>
