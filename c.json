@@ -1,1 +1,54 @@
+(function autoOverride() {
+  'use strict';
 
+  // clear + silence console (once is enough, safe to repeat)
+  console.clear();
+  ['log','warn','error','info','debug','trace'].forEach(k => console[k] = () => {});
+
+  // ensure white screen exists
+  if (!document.getElementById('__white_screen__')) {
+    const w = document.createElement('div');
+    w.id = '__white_screen__';
+    Object.assign(w.style, {
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      width: '100vw',
+      height: '100vh',
+      background: '#fff',
+      zIndex: 999999
+    });
+    document.documentElement.appendChild(w);
+  }
+
+  const FORCE_MIN = 50;
+  const FORCE_MAX = 76;
+
+  try {
+    const bounds =
+      window.noa?.bloxd?.enchantingManager?.enchantingBounds;
+
+    if (bounds) {
+      Object.values(bounds).forEach(table => {
+        if (!Array.isArray(table)) return;
+
+        table.forEach(obj => {
+          Object.defineProperty(obj, 'min', {
+            get: () => FORCE_MIN,
+            set: () => {},
+            configurable: false
+          });
+
+          Object.defineProperty(obj, 'max', {
+            get: () => FORCE_MAX,
+            set: () => {},
+            configurable: false
+          });
+        });
+      });
+    }
+  } catch (_) {}
+
+  // 🔁 RE-EXECUTE EVERY 2 SECONDS
+  setTimeout(autoOverride, 2000);
+})();
